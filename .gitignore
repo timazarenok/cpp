@@ -1,2 +1,6 @@
 *.layout
-*.exe*.o*.dependbin/obj/
+*.exe
+*.o
+*.depend
+bin/
+obj/
