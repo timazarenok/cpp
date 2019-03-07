@@ -1,6 +1,11 @@
 *.layout
+
 *.exe
+
 *.o
+
 *.depend
+
 bin/
+
 obj/
