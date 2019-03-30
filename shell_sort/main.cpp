@@ -26,12 +26,11 @@ void shell_sort(Iter first, Iter last, BO op)
 
 int main()
 {
-    std::vector<int> vec(5);
-    std::iota(vec.begin(), vec.end(),0);
+    std::vector<int> vec(10);
     std::mt19937 gen{std::random_device()()};
-    std::uniform_int_distribution<int> uid(0, 10000);
+    std::uniform_int_distribution<int> uid(0, 100);
     std::generate(vec.begin(), vec.end(), [&uid, &gen](){return uid(gen);});
     shell_sort(vec.begin(), vec.end(), [](int value1, int value2){return value1 < value2;});
-    std::for_each(vec.begin(), vec.end(), [](int a){std::cout << a << " ";});
+    //std::for_each(vec.begin(), vec.end(), [](int a){std::cout << a << " ";});
     return 0;
 }

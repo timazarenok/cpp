@@ -1,0 +1,13 @@
+#include <iostream>
+#include <cstddef>
+#include <initializer_list>
+#include "List.h"
+
+
+int main()
+{
+    stu::list<int> a{1, 12, 3, 4};
+
+    std::cout << a.head->value << std::endl;
+    return 0;
+}
