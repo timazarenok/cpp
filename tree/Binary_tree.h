@@ -12,13 +12,16 @@ struct Binary_tree
         Node(int value): m_value(value) {}
     };
 
+    std::size_t m_size = 0;
     Node* head = nullptr;
     Binary_tree() = default;
+
 
     Node* add(Node* node, int value)
     {
         if(node == nullptr)
         {
+            ++m_size;
             return new Node(value);
         }
         if(value < node->m_value)
@@ -52,21 +55,30 @@ struct Binary_tree
         print(head);
     }
 
-    Node* find(Node* node, int value)
+    Node* find(Node* node, int key) const
     {
-        if(node == nullptr || node->m_value == value)
+        if(node == nullptr || node->m_value == key)
         {
             return node;
         }
 
-        if(node->m_value < value)
+        if(node->m_value < key)
         {
-            return find(node->m_right, value);
+            return find(node->m_right, key);
         }
-        return find(node->m_left, value);
+        return find(node->m_left, key);
     }
 
 
+    bool contains(const int& key) const
+    {
+        return find(head, key) != nullptr;
+    }
+
+    std::size_t size()
+    {
+        return m_size;
+    }
 
 };
 

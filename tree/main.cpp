@@ -15,8 +15,9 @@ int main()
     a.insert(8);
     a.insert(7);
     a.insert(4);
-    auto f = a.find(a.head, 666);
-    f->m_value = 35;
+    std::cout << a.contains(7) << std::endl;
+    //auto f = a.find(a.head, 666);
+    //f->m_value = 35;
     /*for(auto i = a.head; i != nullptr; i = i->m_right)
     {
         std::cout << i->m_value << " ";
