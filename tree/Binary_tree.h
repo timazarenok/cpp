@@ -1,23 +1,28 @@
 #ifndef BINARY_TREE_H_INCLUDED
 #define BINARY_TREE_H_INCLUDED
-
+template<class T>
 struct Binary_tree
 {
+    using size_type = std::size_t;
+    using value_type = T;
+    using reference = T&;
+    using const_reference = const reference;
     struct Node
     {
         Node* m_left = nullptr;
         Node* m_right = nullptr;
-        int m_value;
+        value_type m_value;
         Node() = default;
-        Node(int value): m_value(value) {}
+        Node(value_type value): m_value(value) {}
     };
 
-    std::size_t m_size = 0;
+    size_type m_size = 0;
     Node* head = nullptr;
     Binary_tree() = default;
 
 
-    Node* add(Node* node, int value)
+private:
+    Node* add(Node* node, T value)
     {
         if(node == nullptr)
         {
@@ -35,27 +40,7 @@ struct Binary_tree
         return node;
     }
 
-    void insert(int value)
-    {
-        head = add(head, value);
-    }
-
-    void print(Node* node)
-    {
-        if(node != nullptr)
-        {
-            print(node->m_left);
-            std::cout << node->m_value << " ";
-            print(node->m_right);
-        }
-    }
-
-    void print_all()
-    {
-        print(head);
-    }
-
-    Node* find(Node* node, int key) const
+        Node* find(Node* node, T key) const
     {
         if(node == nullptr || node->m_value == key)
         {
@@ -69,13 +54,33 @@ struct Binary_tree
         return find(node->m_left, key);
     }
 
+     void print(Node* node)
+    {
+        if(node != nullptr)
+        {
+            print(node->m_left);
+            std::cout << node->m_value << " ";
+            print(node->m_right);
+        }
+    }
 
-    bool contains(const int& key) const
+
+public:
+    void insert(T value)
+    {
+        head = add(head, value);
+    }
+    void print_all()
+    {
+        print(head);
+    }
+
+    bool contains(const_reference key) const
     {
         return find(head, key) != nullptr;
     }
 
-    std::size_t size()
+    size_type size()
     {
         return m_size;
     }
